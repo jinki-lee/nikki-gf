@@ -6,18 +6,79 @@
     <title>Thank you</title>
     <link rel="stylesheet" href="css/lastpage.css" />
   </head>
-  <body>
-    <div id="thankyou"><b>Thank you</b></div>
 
-    <img id="rizz" src="rizz.gif" alt="rizzler god" class="responsive" />
+  <body>
+    <div id="thankyou"><b>Thank you >< </b></div>
+
+    <img id="rizz" src="huh.gif" alt="rizzler god" class="responsive" />
     <br />
     <audio controls autoplay loop>
-      <source src="congratulations.mp3" type="audio/mpeg" />
+      <source src="huh-cat.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
-    <h1>Don't go yet!</h1>
+
+    <div id="timers">
+      <div id="firstDateTimer" class="timer-section">
+        <span class="timer-label">⛅ First official date 💕</span>
+        <p>Sept 12 2025</p>
+        <p class="timer-count"></p>
+      </div>
+      <div id="boyfriendTimer" class="timer-section">
+        <span class="timer-label">💖 Official boyfriend date 💞</span>
+        <p>Nov 1 2025</p>
+        <p class="timer-count"></p>
+      </div>
+    </div>
+
+    <!-- <h1>Don't go yet!</h1>
+
     <button class="button" onclick="location.href='date.html'">
       Click me UWU
-    </button>
+    </button> -->
+
+    <script>
+      // Get current time in Mountain Time
+      function getMountainTime() {
+        const now = new Date();
+        const options = { timeZone: "America/Denver" };
+        const mtString = now.toLocaleString("en-US", options);
+        return new Date(mtString);
+      }
+
+      function formatDuration(diff) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        return `${days} days, ${hours} hrs, ${minutes} mins, ${seconds} secs`;
+      }
+
+      function updateTimers() {
+        const now = getMountainTime();
+
+        // Mountain Time start dates
+        const firstDate = new Date("Sep 12, 2025 16:55:00 GMT-0600");
+        const bfDate = new Date("Nov 1, 2025 16:00:00 GMT-0600");
+
+        let diff1 = now - firstDate;
+        let diff2 = now - bfDate;
+
+        if (diff1 < 0) diff1 = 0;
+        if (diff2 < 0) diff2 = 0;
+
+        document.getElementById("firstDateTimer").innerHTML = `
+          ⛅ <span class="timer-label">First date:</span> Sept 12 2025 💕<br>
+          We've been dating for ${formatDuration(diff1)} 💞
+        `;
+
+        document.getElementById("boyfriendTimer").innerHTML = `
+          💖 <span class="timer-label">Asked out on:</span> Nov 1 2025 💞<br>
+          We've been official for ${formatDuration(diff2)} 💘
+        `;
+      }
+
+      setInterval(updateTimers, 1000);
+      updateTimers();
+    </script>
   </body>
 </html>
