@@ -38,11 +38,11 @@
 
     <script>
       // Get current time in Mountain Time
-      function getMountainTime() {
-  return new Date(
-    new Date().toLocaleString("en-US", { timeZone: "America/Denver" })
+  function getMountainTime() {
+  const now = new Date();
+  const mountainTime = new Date(
+    now.toLocaleString("en-US", { timeZone: "America/Denver" })
   );
-}
 
   // Adjust so it's treated as the correct UTC offset
   const offsetDiff = now.getTimezoneOffset() - mountainTime.getTimezoneOffset();
